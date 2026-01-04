@@ -1,13 +1,15 @@
 int a = 1;
 int b = 2;
+int c = 3;
 int temp;
-Console.WriteLine($"a = {a}, b = {b}");
+Console.WriteLine($"a = {a}, b = {b}, c = {c}");
 
-//a와 b의 값을 서로 바꾸기
+//a->b->c->a의 값을 서로 바꾸기
 
 temp = a;
 a = b;
-b = temp;
+b = c;
+c = temp;
 
-//=============================
-Console.WriteLine($"a = {a}, b = {b}");
+//==============================
+Console.WriteLine($"a = {a}, b = {b}, c = {c}");
