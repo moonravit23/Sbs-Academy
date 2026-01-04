@@ -1,2 +1,1 @@
-# Sbs-Academy
-in Academy
+I Love Furina
