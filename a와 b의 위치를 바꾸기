@@ -29,3 +29,6 @@ k = temp;
 
 //==============================
 Console.WriteLine($"a = {a}, b = {b}, c = {c}, d = {d}, e = {e}, f = {f}, g = {g}, h = {h}, i = {i}, j = {j}, k = {k}");
+
+// 또다른 방법
+(a, b, c, d, e, f, g, h, i, j, k) = (b, c, d, e, f, g, h, i, j, k, a);
