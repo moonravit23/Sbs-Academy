@@ -1,0 +1,15 @@
+int a;
+int b;
+a = 10;
+b = 3;
+
+Console.WriteLine(a + b);
+Console.WriteLine(a - b);
+Console.WriteLine(a * b);
+Console.WriteLine(a / b);
+Console.WriteLine(a % b);
+
+// Conesole.WriteLine : 무언가를 출력함
+// int 변수의 값을 등록 ex) int a;, int b; (값을 정할수도 있다. ex) a = 10;, b = 3;)
+// ; 한 줄의 명령을 끝낼 때 사용  (세미콜론)
+// % 나눈 후 나머지 값을 출력 
