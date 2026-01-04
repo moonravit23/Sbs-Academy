@@ -1,0 +1,14 @@
+C:\sydsyd\moon\1\1\bin\Debug\net8.0\1.exe
+C:\sydsyd\moon\1\1\bin\Debug\net8.0\1.deps.json
+C:\sydsyd\moon\1\1\bin\Debug\net8.0\1.runtimeconfig.json
+C:\sydsyd\moon\1\1\bin\Debug\net8.0\1.dll
+C:\sydsyd\moon\1\1\bin\Debug\net8.0\1.pdb
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\1.GeneratedMSBuildEditorConfig.editorconfig
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\1.AssemblyInfoInputs.cache
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\1.AssemblyInfo.cs
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\1.csproj.CoreCompileInputs.cache
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\1.dll
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\refint\1.dll
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\1.pdb
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\1.genruntimeconfig.cache
+C:\sydsyd\moon\1\1\obj\Debug\net8.0\ref\1.dll

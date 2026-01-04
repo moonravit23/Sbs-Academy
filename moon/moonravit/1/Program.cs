@@ -1,0 +1,34 @@
+﻿int a = 1;
+int b = 2;
+int c = 3;
+int d = 4;
+int e = 5;
+int f = 6;
+int g = 7;
+int h = 8;
+int i = 9;
+int j = 10;
+int k = 11;
+int temp;
+Console.WriteLine($"a = {a}, b = {b}, c = {c}, d = {d}, e = {e}, f = {f}, g = {g}, h = {h}, i = {i}, j = {j}, k = {k}");
+
+//a->b->c->a의 값을 서로 바꾸기
+
+temp = a;
+a = b;
+b = c;
+c = d;
+d = e;
+e = f;
+f = g;
+g = h;
+h = i;
+i = j;
+j = k;
+k = temp;
+
+//==============================
+Console.WriteLine($"a = {a}, b = {b}, c = {c}, d = {d}, e = {e}, f = {f}, g = {g}, h = {h}, i = {i}, j = {j}, k = {k}");
+
+// 또다른 방법
+(a, b, c, d, e, f, g, h, i, j, k) = (b, c, d, e, f, g, h, i, j, k, a);

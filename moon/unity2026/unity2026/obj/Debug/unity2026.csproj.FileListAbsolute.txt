@@ -1,0 +1,8 @@
+C:\sydsyd\moon\unity2026\unity2026\obj\Debug\unity2026.csproj.AssemblyReference.cache
+C:\sydsyd\moon\unity2026\unity2026\obj\Debug\unity2026.csproj.CoreCompileInputs.cache
+C:\sydsyd\moon\unity2026\unity2026\bin\Debug\unity2026.exe.config
+C:\sydsyd\moon\unity2026\unity2026\bin\Debug\unity2026.exe
+C:\sydsyd\moon\unity2026\unity2026\bin\Debug\unity2026.pdb
+C:\sydsyd\moon\unity2026\unity2026\obj\Debug\unity2026.exe
+C:\sydsyd\moon\unity2026\unity2026\obj\Debug\unity2026.pdb
+C:\sydsyd\moon\unity2026\unity2026\obj\Debug\unity2026.exe.config
