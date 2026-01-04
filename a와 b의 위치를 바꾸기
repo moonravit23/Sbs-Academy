@@ -1,15 +1,17 @@
 int a = 1;
 int b = 2;
 int c = 3;
+int d = 4;
 int temp;
-Console.WriteLine($"a = {a}, b = {b}, c = {c}");
+Console.WriteLine($"a = {a}, b = {b}, c = {c}, d = {d}");
 
 //a->b->c->a의 값을 서로 바꾸기
 
 temp = a;
 a = b;
 b = c;
-c = temp;
+c = d;
+d = temp;
 
 //==============================
-Console.WriteLine($"a = {a}, b = {b}, c = {c}");
+Console.WriteLine($"a = {a}, b = {b}, c = {c}, d = {d}");
