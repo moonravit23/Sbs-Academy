@@ -1,0 +1,20 @@
+int a;
+int b;
+string input = "";
+
+Console.Write("변수 a의 값을 입력하세요 : ");
+input = Console.ReadLine();
+a = int.Parse(input);
+Console.WriteLine(a);
+
+Console.Write("변수 b의 값을 입력하세요 : ");
+input = Console.ReadLine();
+b = int.Parse(input);
+Console.WriteLine(b);
+
+Console.WriteLine($"a:{a}, b: {b}");
+Console.WriteLine($"a + b = {a + b}");
+Console.WriteLine($"a - b = {a - b}");
+Console.WriteLine($"a * b = {a * b}");
+Console.WriteLine($"a / b = {a / b}");
+Console.WriteLine($"a % b = {a % b}");
