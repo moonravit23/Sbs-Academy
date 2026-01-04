@@ -1,0 +1,30 @@
+정수형 데이터
+sbyte, short, int, long -> 주로 int 사용
+8, 16, 32, 64
+2^3, 2^4, 2^5, 2^6
+
+문자 문자열
+char string -> char: 단일 문자, string: 문자열
+
+참/거잣
+bool (true/false)
+
+실수형 데이터
+float, double, decimal -> 주로 float 사용
+
+int, char, string, bool, float 5개를 외우면 왠만한건 다 된거다~
+
+sbyte mySbyte;
+short myShort;
+int myInt;
+long myLong;
+byte mybyte;
+ushort myUShort;
+uint myUInt;
+ulong myULong;
+float myFloat;  
+double myDouble;
+decimal myDecimal;
+char myChar;
+bool myBool;
+string myString;
