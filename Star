@@ -39,7 +39,6 @@ for (int a = 0; a < 5; a++)
 
 
 
-
 for (int a = 0; a < 5; a++)
 {
     for (int c = 0; c < 4-a; c++)
@@ -53,14 +52,14 @@ for (int a = 0; a < 5; a++)
     }
     Console.WriteLine();
 }
-for (int a = 0; a < 5; a++)
+for (int a = 0; a < 4; a++)
 {
-    for (int c = 0; c < a; c++)
+    for (int c = 0; c <= a; c++)
     {
         Console.Write(" ");
     }
 
-    for (int j = 0; j < 5 - a; j++)
+    for (int j = 0; j < 4 - a; j++)
     {
         Console.Write("*");
     }
