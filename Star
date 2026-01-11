@@ -139,3 +139,77 @@ for (int a = 0; a < 5; a++)
 }
 
 
+
+
+
+
+
+for (int a = 0; a < 5; a++)
+{
+    for (int c = 0; c < 9 - a; c++)
+    {
+        Console.Write(" ");
+    }
+
+    for (int j = 0; j <= 2 * a; j++)
+    {
+        Console.Write("*");
+    }
+    Console.WriteLine();
+}
+
+
+for (int a = 0; a < 5; a++)
+{
+    for (int c = 0; c < a; c++)
+    {
+        Console.Write(" ");
+    }
+
+    for (int j = 0; j <= 19 - a * 2; j++)
+    {
+        Console.Write("*");
+    }
+    Console.WriteLine();
+}
+
+for (int p = 0; p < 1; p++)
+{
+    for (int q = 0; q < 5; q++)
+    {
+        Console.Write(" ");
+    }
+    for (int r = 0; r < 10; r++)
+    {
+        Console.Write("*");
+    }
+    Console.WriteLine();
+}
+
+for (int a = 0; a < 5; a++)
+{
+    for (int c = 0; c < 4 - a; c++)
+    {
+        Console.Write(" ");
+    }
+
+    for (int j = 0; j <= 11 + a * 2; j++)
+    {
+        Console.Write("*");
+    }
+    Console.WriteLine();
+}
+
+for (int a = 0; a < 5; a++)
+{
+    for (int c = 0; c <= 5 + a; c++)
+    {
+        Console.Write(" ");
+    }
+
+    for (int j = 0; j < 7 - a * 2; j++)
+    {
+        Console.Write("*");
+    }
+    Console.WriteLine();
+}
