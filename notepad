@@ -51,5 +51,23 @@ if(true or false)
  if, else 세트
 => 같거나 작다
 =< 같거나 크다
+int a = 5;
+bool myBool = true;
+//그리고 and (&&)
+//또는 or (||)
+
+if (0 < a && a < 4) ;
+{
+    Console.WriteLine("참입니다!");
+}
+else if (4 <= a && a < 10) ;
+{
+    Console.WriteLine("4이상 10미만");
+}
+else if (10 <= a && a < 20) ;
+{
+    Console.WriteLine("10 이상 20미만");
+}
+
 
 
