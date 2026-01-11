@@ -1,0 +1,27 @@
+//Q1.
+//숫자 두 개를 입력받아 두 수의 합이 10을 넘어가면 "합이 10보다 큽니다" 출력
+//20을 넘어가면 합이 20보다 큽니다 출력
+//30을 넘어가면 합이 30보다 큽니다 출력
+
+int a;
+int b;
+
+a = int.Parse(Console.ReadLine());
+b = int.Parse(Console.ReadLine());
+
+int c = a + b;
+
+if (c > 30)
+{
+    Console.WriteLine("합이 30보다 큽니다");
+}
+else if (c > 20) 
+{
+    Console.WriteLine("합이 20보다 큽니다");
+}
+
+else if (c > 10)
+{
+    Console.WriteLine("합이 10보다 큽니다");
+}
+
