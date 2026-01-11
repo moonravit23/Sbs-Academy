@@ -1,0 +1,9 @@
+//Q. while을 이용해 0부터 10가지 순서대로 출력하기
+
+int a = 0;
+while (a < 11)
+{
+    Console.WriteLine(a);
+    a++;
+}
+    
