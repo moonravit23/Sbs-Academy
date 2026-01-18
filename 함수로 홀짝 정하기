@@ -1,0 +1,17 @@
+// 함수 정의
+bool isOddNumber(int number)
+{
+    return number % 2 != 0;
+}
+
+int input = int.Parse(Console.ReadLine()!);
+bool result = isOddNumber(input);
+
+if (result)
+{
+    Console.WriteLine("홀수입니다");
+}
+else
+{
+    Console.WriteLine("짝수입니다");
+}
