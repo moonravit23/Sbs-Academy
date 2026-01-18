@@ -1,0 +1,30 @@
+//Q. 별찍기
+//인자값으로 숫자 n을 전달하면 n줄의 삼각형을 출력하는 함수 Triangle_basic 를 작성하라.
+//삼각형의 모양은 아래와 같다.
+/*
+
+*
+**
+***
+****
+*****
+
+*/
+
+
+static void Triangle_basic(int n)
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            Console.Write("*");
+        }
+        Console.WriteLine();
+    }
+}
+
+{
+    int n = int.Parse(Console.ReadLine());
+    Triangle_basic(n);
+}
