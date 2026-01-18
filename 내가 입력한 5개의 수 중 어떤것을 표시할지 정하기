@@ -1,0 +1,21 @@
+
+//Q
+//5개의 정수를 입력받는다.
+//이후, 사용자가 1을 입력하면 첫번쨰 입력받은 정수를 출력하고
+//2를 입력하면 두번째 입력을 받은 정수를 출력하는 등, 순서의 맞는 정수를 출력하는 프로그램을 작성하라.
+
+class program
+{
+    static void Main()
+    {
+        int[] arrayName = new int[5];
+        int asdf;
+        for (int i = 0; i < 5; i++)
+        {
+            arrayName[i] = int.Parse(Console.ReadLine());
+        }
+        Console.WriteLine("몇번째 수를 출력할까요?");
+        asdf = int.Parse(Console.ReadLine());
+        Console.WriteLine(arrayName[asdf - 1]);
+    }
+}
