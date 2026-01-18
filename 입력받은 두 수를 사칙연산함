@@ -1,0 +1,25 @@
+int Add(int A, int B)
+    {
+        return A + B;
+    }
+int Subtract(int A, int B)
+    {
+        return A - B;
+    }
+
+int Multiply(int A, int B)
+    {
+        return A * B;
+    }
+int Divide(int A, int B)
+    {
+        return A / B;
+    }
+
+int a = int.Parse(Console.ReadLine());
+int b = int.Parse(Console.ReadLine());
+
+Console.WriteLine("Addition: " + Add(a, b));
+Console.WriteLine("Subtraction: " + Subtract(a, b));
+Console.WriteLine("Multiplication: " + Multiply(a, b));
+Console.WriteLine("Division: " + Divide(a, b));
