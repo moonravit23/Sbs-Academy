@@ -1,0 +1,23 @@
+// 정수 하나를 받아서 짝수면 true , 홀수면 false를 반환하는 함수 작성
+// 작성한 함수를 이용해, 입력받은 숫자가 짝수면 "짝수입니다." , 홀수면 "홀수입니다." 출력하는 프로그램 작성
+
+class Program
+{
+    static bool IsEvenNumver(int number)
+    {
+        return number % 2 == 0;
+    }
+    public static void Main()
+    {
+        int number = int.Parse(Console.ReadLine());
+        if (IsEvenNumver(number))
+        {
+            Console.WriteLine("짝수입니다.");
+        }
+        else
+        {
+            Console.WriteLine("홀수입니다.");
+        }
+
+    }
+}
