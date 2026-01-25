@@ -1,0 +1,20 @@
+int[] arr = { 1, 2, 3, 4, };
+
+//문제1 배열 arr의 각 요소의 합을 반복문으로 구하기
+//문제2 배열 arr의 각 요소의 합을 재귀함수로 구하기
+
+int arrSize = arr.Length;
+int Sum = 0;
+for (int i = 0; i < arrSize; i++)
+{
+    Sum += arr[i];
+}
+Console.WriteLine("반복문을 이용한 합 : " + Sum);
+
+int RecursiveSum(int[] array, int size)
+{
+    if (size <= 0)
+        return 0;
+    return array[size - 1] + RecursiveSum(array, size - 1);
+}
+Console.WriteLine("재귀함수를 이용한 합 : " + RecursiveSum(arr, arr.Length));
