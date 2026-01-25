@@ -1,0 +1,37 @@
+// 정수 두 개를 입력받는다.
+//두 수의 최소공배수를 구하는 함수 "LeastCommonMultiple"을 구현하고
+//두 수의 최대 공약수를 구하는 함수 "GreatestCommonDivisor"을 구현하고
+//두 수의 최소공배수와 최대공약수를 각각 출력하라.
+
+class Program
+{
+    static int GreatestCommonDivisor(int nb1, int nb2)
+    {
+        while (nb2 != 0)
+        {
+            int temp = nb1 % nb2;
+            nb1 = nb2;
+            nb2 = temp;S
+        }
+        return nb1;
+    }
+    static int LeastCommonMultiple(int nb1, int nb2)
+    {
+        return (nb1 * nb2) / GreatestCommonDivisor(nb1, nb2);
+    }
+
+    public static void Main()
+    {
+        Console.Write("첫번째 정수를 입력하세요: ");
+        int number1 = int.Parse(Console.ReadLine());
+
+        Console.Write("두번째 정수를 입력하세요: ");
+        int number2 = int.Parse(Console.ReadLine());
+
+        int gcd = GreatestCommonDivisor(number1, number2);
+        int lcm = LeastCommonMultiple(number1, number2);
+
+        Console.WriteLine($"최대공약수: {gcd}");
+        Console.WriteLine($"최소공배수: {lcm}");
+    }
+}
