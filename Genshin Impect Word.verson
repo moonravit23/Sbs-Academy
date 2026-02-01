@@ -1,0 +1,397 @@
+/*
+ * 게임의 시작화면 만들기
+ * 메인 -  메인 화면 글자 표시하기 ex) 환영인사
+ * 1. 게임시작
+ * 2. 나가기
+ *  
+ *2번을 눌렀을때 게임 종료하기
+ *
+ *2번을 입력하기 전까지 계속 글자를 다시 출력하고 입력을 다시받기.
+ *
+ *1번을 눌러서 게임시작을 선택하면 캐릭터 이름을 화면에 띄우기
+ *"용사님의 이름은 무엇인가요?"
+ *이름을 입력하고 나서 게임의 메인화면 띄우기
+ *메인화면에는 캐릭터의 이름이 나와야 한다. {?}님 환영합니다
+ *1.던전입장
+ *2.상태확인
+ *3.게임종료
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+enum ElementType { None, Fire, Water, Electro, Ice }
+
+class Skill
+{
+    public string Name;
+    public int Damage;
+    public ElementType Element;
+    public int Cooldown;
+    public int CurrentCooldown;
+
+    public Skill(string name, int damage, ElementType element, int cooldown = 0)
+    {
+        Name = name;
+        Damage = damage;
+        Element = element;
+        Cooldown = cooldown;
+        CurrentCooldown = 0;
+    }
+}
+
+class Character
+{
+    public string Name;
+    public ElementType Element;
+    public int MaxHP;
+    public int CurrentHP;
+    public int Attack;
+    public int Level = 1;
+    public int XP = 0;
+    public List<Skill> Skills = new List<Skill>();
+
+    public Character(string name, ElementType element, int hp, int attack)
+    {
+        Name = name;
+        Element = element;
+        MaxHP = hp;
+        CurrentHP = hp;
+        Attack = attack;
+    }
+
+    public void GainXP(int amount)
+    {
+        XP += amount;
+        while (XP >= 100)
+        {
+            XP -= 100;
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        Level++;
+        MaxHP += 15;
+        Attack += 5;
+        foreach (var sk in Skills) sk.Damage += 5;
+        CurrentHP = MaxHP;
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"{Name} 레벨업! 레벨 {Level} | HP {MaxHP} | 공격력 {Attack}");
+        Console.ResetColor();
+        Task.Delay(1200).Wait();
+    }
+
+    public void ReduceCooldowns()
+    {
+        foreach (var sk in Skills)
+            if (sk.CurrentCooldown > 0) sk.CurrentCooldown--;
+    }
+}
+
+class Enemy
+{
+    public string Name;
+    public int MaxHP;
+    public int HP;
+    public int Attack;
+    public ElementType Element = ElementType.None;
+    public List<Skill> Skills = new List<Skill>();
+    public bool IsBoss;
+
+    public Enemy(string name, int hp, int attack, bool isBoss = false)
+    {
+        Name = name;
+        MaxHP = hp;
+        HP = hp;
+        Attack = attack;
+        IsBoss = isBoss;
+    }
+
+    public void AddSkill(Skill skill) => Skills.Add(skill);
+}
+
+class Program
+{
+    static List<Character> party = new List<Character>();
+    static Enemy enemy;
+    static string playerName = "";
+    static List<Enemy> monsters = new List<Enemy>();
+    static Random rand = new Random();
+
+    static void Main()
+    {
+        StartScreen();
+        InitCharacters();
+        InitMonsters();
+        MainLoop();
+    }
+
+    static void StartScreen()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("\n       Genshin Impect Word.ver \n");
+            Console.WriteLine("1. 게임 시작");
+            Console.WriteLine("2. 나가기\n");
+            Console.Write("선택하세요: ");
+            string input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                Console.Write("\n당신의 이름은 무엇인가요? ");
+                playerName = Console.ReadLine();
+                break;
+            }
+            else if (input == "2") Environment.Exit(0);
+            else { Console.WriteLine("잘못된 입력입니다."); Task.Delay(1000).Wait(); }
+        }
+    }
+
+    static void InitCharacters()
+    {
+        var huTao = new Character("호두", ElementType.Fire, 80, 25);
+        huTao.Skills.Add(new Skill("일반 공격", 25, ElementType.Fire));
+        huTao.Skills.Add(new Skill("불꽃 폭발", 50, ElementType.Fire, 3));
+        huTao.Skills.Add(new Skill("귀멸의 불꽃(궁극기)", 100, ElementType.Fire, 5));
+
+        var furina = new Character("푸리나", ElementType.Water, 120, 12);
+        furina.Skills.Add(new Skill("일반 공격", 12, ElementType.Water));
+        furina.Skills.Add(new Skill("물대포", 35, ElementType.Water, 2));
+        furina.Skills.Add(new Skill("폭풍의 진주(궁극기)", 90, ElementType.Water, 5));
+
+        var lisa = new Character("리사", ElementType.Electro, 90, 18);
+        lisa.Skills.Add(new Skill("일반 공격", 18, ElementType.Electro));
+        lisa.Skills.Add(new Skill("번개 충격", 40, ElementType.Electro, 3));
+        lisa.Skills.Add(new Skill("썬더 스톰(궁극기)", 95, ElementType.Electro, 5));
+
+        var kaeya = new Character("케이아", ElementType.Ice, 110, 14);
+        kaeya.Skills.Add(new Skill("일반 공격", 14, ElementType.Ice));
+        kaeya.Skills.Add(new Skill("얼음 칼날", 30, ElementType.Ice, 2));
+        kaeya.Skills.Add(new Skill("빙결 폭풍(궁극기)", 80, ElementType.Ice, 5));
+
+        party.AddRange(new[] { huTao, furina, lisa, kaeya });
+    }
+
+    static void InitMonsters()
+    {
+        var slime = new Enemy("슬라임", 200, 15);
+        slime.AddSkill(new Skill("물 튀기기", 20, ElementType.Water));
+        slime.AddSkill(new Skill("평타", 15, ElementType.None));
+
+        var boss = new Enemy("보스: 화염 골렘", 400, 25, true);
+        boss.AddSkill(new Skill("화염 돌진", 50, ElementType.Fire));
+        boss.AddSkill(new Skill("강타", 30, ElementType.None));
+
+        monsters.AddRange(new[] { slime, boss });
+    }
+
+    static void MainLoop()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine($"{playerName}님 환영합니다!\n");
+            Console.WriteLine("1. 몬드섬 입장");
+            Console.WriteLine("2. 상태 확인");
+            Console.WriteLine("3. 게임 종료\n");
+            Console.Write("선택하세요: ");
+            string input = Console.ReadLine();
+
+            if (input == "1") ChooseMonster();
+            else if (input == "2") ShowPartyStatus();
+            else if (input == "3") Environment.Exit(0);
+            else { Console.WriteLine("잘못된 입력입니다."); Task.Delay(1000).Wait(); }
+        }
+    }
+
+    static void ChooseMonster()
+    {
+        Console.Clear();
+        Console.WriteLine("=== 몬스터 선택 ===\n");
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            var m = monsters[i];
+            Console.WriteLine($"{i + 1}. {m.Name} (HP: {m.HP}, 공격력: {m.Attack})");
+        }
+
+        Console.Write("\n선택하세요: ");
+        if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= monsters.Count)
+        {
+            Enemy template = monsters[index - 1];
+            enemy = new Enemy(template.Name, template.MaxHP, template.Attack, template.IsBoss);
+            foreach (var sk in template.Skills)
+                enemy.AddSkill(new Skill(sk.Name, sk.Damage, sk.Element, sk.Cooldown));
+            EnterBattle().Wait();
+        }
+        else { Console.WriteLine("잘못된 번호입니다."); Task.Delay(1000).Wait(); }
+    }
+
+    static async Task EnterBattle()
+    {
+        while (enemy.HP > 0)
+        {
+            if (!AnyAlive())
+            {
+                Console.WriteLine("모든 캐릭터가 쓰러졌습니다! 패배...");
+                await Task.Delay(1500);
+                return;
+            }
+
+            Console.Clear();
+            Console.WriteLine($"=== 전투 시작 === 적: {enemy.Name} HP: {enemy.HP}/{enemy.MaxHP} | 원소: {enemy.Element}\n");
+
+            int totalDamage = 0;
+            ElementType combo = ElementType.None;
+
+            foreach (var c in party)
+            {
+                if (c.CurrentHP <= 0) continue;
+
+                Skill selectedSkill = ChooseSkill(c); // 스킬 선택
+                selectedSkill.CurrentCooldown = selectedSkill.Cooldown;
+
+                await ColorTextCinematic($"{c.Name} 스킬 사용: {selectedSkill.Name}", selectedSkill.Element);
+
+                int dmg = selectedSkill.Damage;
+
+                // 원소 반응 처리
+                if (combo == ElementType.Water && selectedSkill.Element == ElementType.Fire)
+                {
+                    dmg *= 2;
+                    await ColorTextCinematic("💥 증발 발생! x2", ConsoleColor.Red);
+                }
+                else if (combo == ElementType.Fire && selectedSkill.Element == ElementType.Water)
+                {
+                    dmg = (int)(dmg * 1.5);
+                    await ColorTextCinematic("💥 증발 발생! x1.5", ConsoleColor.Cyan);
+                }
+                else if (combo == ElementType.Fire && selectedSkill.Element == ElementType.Electro)
+                {
+                    dmg += 10;
+                    await ColorTextCinematic("⚡ 과부하 발생! +10", ConsoleColor.Yellow);
+                }
+
+                totalDamage += dmg;
+                combo = selectedSkill.Element;
+            }
+
+            // 몬스터 기본 데미지 보너스
+            int bonus = enemy.IsBoss ? 30 : 15;
+            totalDamage += bonus;
+            enemy.HP -= totalDamage;
+            enemy.Element = combo;
+
+            await ColorTextCinematic($"\n💥 총합 데미지: {totalDamage} | 몬스터 HP 남음: {Math.Max(enemy.HP, 0)}", ConsoleColor.Magenta);
+
+            foreach (var c in party) c.ReduceCooldowns();
+            await Task.Delay(1000);
+
+            if (enemy.HP <= 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n적을 처치했습니다! XP 획득!");
+                Console.ResetColor();
+                foreach (var c in party) if (c.CurrentHP > 0) c.GainXP(50);
+                await Task.Delay(1500);
+                return;
+            }
+
+            await EnemyTurn();
+        }
+    }
+
+    static Skill ChooseSkill(Character c)
+    {
+        while (true)
+        {
+            Console.WriteLine($"\n{c.Name}의 스킬을 선택하세요:");
+            for (int i = 0; i < c.Skills.Count; i++)
+            {
+                Skill sk = c.Skills[i];
+                string cd = sk.CurrentCooldown > 0 ? $"(쿨다운 {sk.CurrentCooldown})" : "";
+                Console.WriteLine($"{i + 1}. {sk.Name} {cd}");
+            }
+
+            Console.Write("선택: ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= c.Skills.Count)
+            {
+                Skill sk = c.Skills[choice - 1];
+                if (sk.CurrentCooldown > 0)
+                {
+                    Console.WriteLine("쿨다운 중인 스킬입니다. 다른 스킬을 선택하세요.");
+                    continue;
+                }
+                return sk;
+            }
+            Console.WriteLine("잘못된 입력입니다. 다시 선택하세요.");
+        }
+    }
+
+    static async Task ColorTextCinematic(string text, ElementType element)
+    {
+        ConsoleColor color = element switch
+        {
+            ElementType.Fire => ConsoleColor.Red,
+            ElementType.Water => ConsoleColor.Cyan,
+            ElementType.Electro => ConsoleColor.Yellow,
+            ElementType.Ice => ConsoleColor.Blue,
+            _ => ConsoleColor.White
+        };
+        await ScreenShakeEffect(text, color);
+    }
+
+    static async Task ColorTextCinematic(string text, ConsoleColor color)
+    {
+        await ScreenShakeEffect(text, color);
+    }
+
+    static async Task ScreenShakeEffect(string text, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        int delay = 2000 / Math.Max(text.Length, 1); // 2초 기준 텍스트 길이에 맞춰 딜레이
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Clear();
+            int spaces = rand.Next(0, 5);
+            Console.WriteLine(new string(' ', spaces) + text);
+            await Task.Delay(delay);
+        }
+        Console.WriteLine(text);
+        Console.ResetColor();
+        await Task.Delay(200);
+    }
+
+    static bool AnyAlive()
+    {
+        foreach (var c in party) if (c.CurrentHP > 0) return true;
+        return false;
+    }
+
+    static async Task EnemyTurn()
+    {
+        Character target = party[rand.Next(party.Count)];
+        while (target.CurrentHP <= 0) target = party[rand.Next(party.Count)];
+
+        Skill sk = enemy.Skills[rand.Next(enemy.Skills.Count)];
+        int dmg = sk.Damage;
+        target.CurrentHP -= dmg;
+
+        await ColorTextCinematic($"\n{enemy.Name} 스킬 사용: {sk.Name} → {target.Name}에게 {dmg} 피해!", ConsoleColor.DarkRed);
+        await Task.Delay(2000);
+    }
+
+    static void ShowPartyStatus()
+    {
+        Console.Clear();
+        Console.WriteLine("=== 파티 상태 ===\n");
+        foreach (var c in party)
+            Console.WriteLine($"{c.Name} | 원소: {c.Element} | 레벨: {c.Level} | HP: {c.CurrentHP}/{c.MaxHP} | 공격력: {c.Attack} | XP: {c.XP}/100");
+
+        Console.WriteLine("\n아무 키나 누르세요...");
+        Console.ReadKey();
+    }
+}
