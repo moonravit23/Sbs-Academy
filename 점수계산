@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main()
+{
+    /*
+    학생의 점수 입력받기
+    90점 초과 A
+    80점 초과 B
+    70점 초과 C
+    60점 초과 D
+    50점 초과 E
+    50점 이하 F
+    */
+
+    int score = 0;
+
+    printf("학생의 점수를 입력하세요 : ");
+    scanf("%d", &score);
+
+    if (score > 90)
+    {
+        printf("A입니다");
+    }
+    else if (score > 80)
+    {
+        printf("B입니다");
+    }
+    else if (score > 70)
+    {
+        printf("C입니다");
+    }
+    else if (score > 60)
+    {
+        printf("D입니다");
+    }
+    else if (score > 50)
+    {
+        printf("E입니다");
+    }
+    else
+    {
+        printf("F입니다");
+    }
+
+    return 0;
+}
