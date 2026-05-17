@@ -1,0 +1,94 @@
+#include <stdio.h>
+
+int main()
+{
+    //입력 : 줄 수
+    //출력 : 줄 수에 따른 별찍기 모양
+    int lineCount = 0;
+    printf("줄 수 입력 : ");
+    scanf("%d", &lineCount);
+    int left = lineCount % 4;
+
+    int part1 = lineCount / 4 + (left == 3);
+    int part2 = lineCount / 4 + (left > 0);
+    int part3 = lineCount / 4 + (left == 2);
+    int part4 = lineCount / 4 + (left == 3);
+
+    for (int i = 0; i < part1; i++)
+    {
+        for (int j = 0; j < part1 * 2 - i - 1; j++)
+        {
+            printf(" ");
+        }
+        for (int j = 0; j <= i * 2; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < part2; i++)
+    {
+        // 여백
+        for (int j = 0; j < i; j++)
+        {
+            printf(" ");
+        }
+        // 1. 왼쪽 삼각형 별
+        for (int j = 0; j < part1 - i; j++)
+        {
+            printf("*");
+        }
+        // 2. 가운데 몸통 별 (상단/하단 삼각형의 밑변 폭과 동일하게 고정)
+        for (int j = 0; j < part1 * 2 - 1; j++)
+        {
+            printf("*");
+        }
+        // 3. 오른쪽 삼각형 별
+        for (int j = 0; j < part1 - i; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < part3; i++)
+    {
+        // 여백
+        for (int j = 0; j < part3 - 1 - i; j++)
+        {
+            printf(" ");
+        }
+        // 1. 왼쪽 삼각형 별
+        for (int j = 0; j < part1 - (part3 - 1 - i); j++)
+        {
+            printf("*");
+        }
+        // 2. 가운데 몸통 별 (상단/하단 삼각형의 밑변 폭과 동일하게 고정)
+        for (int j = 0; j < part1 * 2 - 1; j++)
+        {
+            printf("*");
+        }
+        // 3. 오른쪽 삼각형 별
+        for (int j = 0; j < part1 - (part3 - 1 - i); j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < part4; i++)
+    {
+        for (int j = 0; j < part1 + i; j++)
+        {
+            printf(" ");
+        }
+        for (int j = 0; j < part1 * 2 - i * 2 - 1; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
